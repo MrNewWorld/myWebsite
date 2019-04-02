@@ -1,7 +1,7 @@
 <template>
   <nav class="nav dt w-100 border-box pa4 pa5-ns">
     <div class="dtc v-mid w-90 tr">
-      <nuxt-link to="/" class="link dim white f4 f3-ns dib mr3 mr6-ns mr5-m" title="首页">
+      <nuxt-link to="/" class="link dim white f4 f3-ns dib mr3 mr6-ns mr5-m" title="首页" @click.native="refresh">
         首页
       </nuxt-link>
       <nuxt-link to="/blog" class="link dim white f4 f3-ns dib mr3 mr6-ns mr5-m" title="文章">
@@ -19,7 +19,12 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    refresh: function () {
+      this.$root.$emit('go')
+    }
+  }
 }
 </script>
 

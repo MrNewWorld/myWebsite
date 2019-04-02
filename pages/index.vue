@@ -1,17 +1,14 @@
 <template>
-  <app>
-    <p class="white f4">
-      首页
-    </p>
-  </app>
+  <p class="white f4">
+    首页
+  </p>
 </template>
 
 <script>
-import App from '../layouts/App'
-
 export default {
-  components: {
-    App
+  layout: 'default',
+  mounted() {
+    // this.$root.$emit('go', '!!!!!')
   }
 }
 </script>

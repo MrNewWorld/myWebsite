@@ -1,11 +1,48 @@
 <template>
-  <div class="h-100">
+  <div class="flex flex-column h-100">
     <div class="bg">
-      <video src="../assets/common/galaxy.mp4" muted loop autoplay />
+      <video src="../assets/common/galaxy2.mp4" muted loop autoplay />
     </div>
-    <Nuxt class="flex flex-column h-100" />
+    <AppHeader />
+    <transition name="slide-fade">
+      <div v-show="show" class="flex flex-auto w-90 center bg-black-50 ph5-ns justify-center items-center self-center">
+        <Nuxt />
+      </div>
+    </transition>
+    <Footer />
   </div>
 </template>
+
+<script>
+import AppHeader from './header'
+import Footer from './footer'
+
+export default {
+  components: {
+    Footer,
+    AppHeader
+  },
+  data() {
+    return {
+      show: false
+    }
+  },
+  created() {
+    // setInterval(() => {
+    //   this.show = !this.show
+    // }, 2000)
+  },
+  mounted() {
+    this.show = true
+    this.$root.$on('go', () => {
+      this.show = false
+      if (!this.show) {
+        this.show = true
+      }
+    })
+  }
+}
+</script>
 
 <style lang="less">
 html {
@@ -20,8 +57,9 @@ html {
   box-sizing: border-box;
   height: 100%;
 }
-body {
+body, html {
   height: 100%;
+  overflow: hidden;
 }
 
 *,
@@ -43,5 +81,16 @@ body {
     height: 100%;
     object-fit: cover;
   }
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
 }
 </style>

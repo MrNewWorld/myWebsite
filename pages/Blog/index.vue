@@ -1,18 +1,13 @@
 <template>
-  <app>
-    <p class="white f4">
-      文章
-    </p>
-  </app>
+  <p class="white f4">
+    文章
+  </p>
 </template>
 
 <script>
-import App from '../../layouts/App'
 
 export default {
-  components: {
-    App
-  }
+  layout: 'default'
 }
 </script>
 
